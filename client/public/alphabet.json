@@ -1,0 +1,236 @@
+[
+    {   "id": 1,
+        "letter": "A", 
+        "image": "/letter-a.png",
+        "lettersound": "/audio/a.mp3",
+        "word": "Apple",
+        "wordsound": "/audio/AisforApple.mp3",
+        "animation": "apple.gif"
+    },
+
+    {   "id": 2,
+        "letter": "B",
+        "image": "/letter-b.png",
+        "lettersound": "/audio/b.mp3",
+        "word": "Ball",
+        "wordsound": "/audio/BisforBall.mp3",
+        "animation": "ball.gif"
+    },
+
+    {    "id": 3,
+        "letter": "C",
+        "image": "/letter-c.png",
+        "lettersound": "/audio/c.mp3",
+        "word": "Cat",
+        "wordsound": "/audio/CisforCat.mp3",
+        "animation": "cat.gif"
+    },
+
+    {   "id": 4,
+        "letter": "D",
+        "image": "/letter-d.png",
+        "lettersound": "/audio/d.mp3",
+        "word": "Dog",
+        "wordsound": "Dog.mp3",
+        "animation": "dog.gif"
+    },
+
+    {   "id": 5,
+        "letter": "E",
+        "image": "/letter-e.png",
+        "lettersound": "/audio/e.mp3",
+        "word": "Elephant",
+        "wordsound": "Elephant.mp3",
+        "animation": "elephant.gif"
+    },
+
+    {   "id": 6,
+        "letter": "F",
+        "image": "/letter-f.png",
+        "lettersound": "/audio/f.mp3",
+        "word": "Fish",
+        "wordsound": "Fish.mp3",
+        "animation": "fish.gif"
+    },
+
+    {   "id": 7,
+        "letter": "G",
+        "image": "/letter-g.png",
+        "lettersound": "/audio/g.mp3",
+        "word": "Goat",
+        "wordsound": "Goat.mp3",
+        "animation": "goat.gif"
+    },
+
+    {   "id": 8,
+        "letter": "H",
+        "image": "/letter-h.png",
+        "lettersound": "/audio/h.mp3",
+        "word": "Horse",
+        "wordsound": "Horse.mp3",
+        "animation": "horse.gif"
+    },
+
+    {   "id": 9,
+        "letter": "I",
+        "image": "/letter-i.png",
+        "lettersound": "/audio/i.mp3",
+        "word": "Ice Cream",
+        "wordsound": "IceCream.mp3",
+        "animation": "icecream.gif"
+    },
+
+    {   "id": 10,
+        "letter": "J",
+        "image": "/letter-j.png",
+        "lettersound": "/audio/j.mp3",
+        "word": "Jug",
+        "wordsound": "Jug.mp3",
+        "animation": "jug.gif"
+    },
+
+    {   "id": 11,
+        "letter": "K",
+        "image": "/letter-k.png",
+        "lettersound": "/audio/k.mp3",
+        "word": "Kite",
+        "wordsound": "Kite.mp3",
+        "animation": "kite.gif"
+    },
+
+    {   "id": 12,
+        "letter": "L",
+        "image": "/letter-l.png",
+        "lettersound": "/audio/l.mp3",
+        "word": "Lion",
+        "wordsound": "Lion.mp3",
+        "animation": "lion.gif"
+    },
+
+    {   "id": 13,
+        "letter": "M",
+        "image": "/letter-m.png",
+        "lettersound": "/audio/m.mp3",
+        "word": "Monkey",
+        "wordsound": "Monkey.mp3",
+        "animation": "monkey.gif"
+    },
+
+    {   "id": 14,
+        "letter": "N",
+        "image": "/letter-n.png",
+        "lettersound": "/audio/n.mp3",
+        "word": "Nest",
+        "wordsound": "Nest.mp3",
+        "animation": "nest.gif"
+    },
+
+    {   "id": 15,
+        "letter": "O",
+        "image": "/letter-o.png",
+        "lettersound": "/audio/o.mp3",
+        "word": "Owl",
+        "wordsound": "Owl.mp3",
+        "animation": "owl.gif"
+    },
+
+    {   "id": 16,
+        "letter": "P",
+        "image": "/letter-p.png",
+        "lettersound": "/audio/p.mp3",
+        "word": "Penguin",
+        "wordsound": "Penguin.mp3",
+        "animation": "penguin.gif"
+    },
+
+    {   "id": 17,
+        "letter": "Q",
+        "image": "/letter-q.png",
+        "lettersound": "/audio/q.mp3",
+        "word": "Queen",
+        "wordsound": "Queen.mp3",
+        "animation": "queen.gif"
+    },
+
+    {   "id": 18,
+        "letter": "R",
+        "image": "/letter-r.png",
+        "lettersound": "/audio/r.mp3",
+        "word": "Rabbit",
+        "wordsound": "Rabbit.mp3",
+        "animation": "rabbit.gif"
+    },
+
+    {   "id": 19,
+        "letter": "S",
+        "image": "/letter-s.png",
+        "lettersound": "/audio/s.mp3",
+        "word": "Sun",
+        "wordsound": "Sun.mp3",
+        "animation": "sun.gif"
+    },
+
+    {   "id": 20,
+        "letter": "T",
+        "image": "/letter-t.png",
+        "lettersound": "/audio/t.mp3",
+        "word": "Tiger",
+        "wordsound": "Tiger.mp3",
+        "animation": "tiger.gif"
+    },
+
+    {   "id": 21,
+        "letter": "U",
+        "image": "/letter-u.png",
+        "lettersound": "/audio/u.mp3",
+        "word": "Umbrella",
+        "wordsound": "Umbrella.mp3",
+        "animation": "umbrella.gif"
+    },
+
+    {   "id": 22,
+        "letter": "V",
+        "image": "/letter-v.png",
+        "lettersound": "/audio/v.mp3",
+        "word": "Van",
+        "wordsound": "Van.mp3",
+        "animation": "van.gif"
+    },
+
+    {   "id": 23,
+        "letter": "W",
+        "image": "/letter-w.png",
+        "lettersound": "/audio/w.mp3",
+        "word": "Watch",
+        "wordsound": "Watch.mp3",
+        "animation": "watch.gif"
+    },
+
+    {   "24": 24,   
+        "letter": "X",
+        "image": "/letter-x.png",
+        "lettersound": "/audio/x.mp3",
+        "word": "Xylophone",
+        "wordsound": "Xylophone.mp3",
+        "animation": "xylophone.gif"
+    },
+
+    {   "25": 25,
+        "letter": "Y",
+        "image": "/letter-y.png",
+        "lettersound": "/audio/y.mp3",
+        "word": "Yak",
+        "wordsound": "Yak.mp3",
+        "animation": "yak.gif"
+    },
+
+    {   "id": 26,
+        "letter": "Z",
+        "image": "/letter-z.png",
+        "lettersound": "/audio/z.mp3",
+        "word": "Zebra",
+        "wordsound": "Zebra.mp3",
+        "animation": "zebra.gif"
+    }
+
+]
