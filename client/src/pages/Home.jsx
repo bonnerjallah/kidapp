@@ -28,7 +28,7 @@ const Home = () => {
                 <h4>Age range</h4>
                 <input
                     type="range"
-                    min="1"
+                    min="3"
                     max="6"
                     value={age}
                     className={homestyle.ageRangeSlider}
