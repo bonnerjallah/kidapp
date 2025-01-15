@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import letterstyles from '../styles/lettersstyle.module.css';
 import Confetti from 'react-confetti'
 import { NavLink, useParams } from 'react-router-dom';
+import { DNA } from 'react-loader-spinner'
 
-import { HomeIcon } from 'lucide-react';
 
 import SoundControll from '../components/SoundControll';
 import WinScreen from '../components/WinScreen';
@@ -18,8 +18,7 @@ const Letters = () => {
   const [bubbleFrequencyMap, setBubbleFrequencyMap] = useState(new Map());
   const [playerWon, setPlayerWon] = useState(false);
   const [letterAudioSound, setLetterAudioSound] = useState(null);
-
-  console.log(" map:", bubbleFrequencyMap);
+  // const [playerScore, setPlayerScore] = useState(0);
 
 
 
@@ -62,8 +61,6 @@ const Letters = () => {
 
   // Check if player won
   const checkIfPlayerWon = () => {
-    console.log("checking if player won");
-  
     // Check if every letter in playerLetters is in poppedLetterSet
     const allLettersPopped = playerLetters.every((letter) => poppedLetterSet.has(letter.letter));
   
@@ -94,6 +91,8 @@ const Letters = () => {
 
     const canvas = canvasRef.current;
     if (!canvas) return; 
+
+    let canvasPosition = null;
 
     const ctx = canvas.getContext('2d');
     canvas.width = canvas.offsetWidth;
@@ -175,12 +174,6 @@ const Letters = () => {
           ctx.lineTo(mouse.x, mouse.y);
           ctx.stroke();
         }
-        // ctx.fillStyle = 'red';
-        // ctx.beginPath();
-        // ctx.arc(this.x, this.y, this.radius, 0, Math.PI / 4);
-        // ctx.fill();
-        // ctx.closePath();
-
       
         // Draw the player
         ctx.save();
@@ -222,6 +215,80 @@ const Letters = () => {
     
     const player = new Player();
 
+
+    //Enemy class
+    const sharkImage = new Image();
+    sharkImage.src = '/spriteSheet/shark2.png';
+
+    class Enemy {
+      constructor() {
+        this.x = canvas.width - 200;
+        this.y = Math.random() * (canvas.height - 90) + 50;
+        this.radius = 150;
+        this.speed = Math.random() * 4 + 1;
+        this.frame = 0;
+        this.frameX = 0;
+        this.frameY = 0;
+        this.spriteWidth = 498;
+        this.spriteHeight = 304;
+      }
+
+      draw() {
+        ctx.drawImage(
+          sharkImage,
+          this.frameX * this.spriteWidth, // X position on sprite sheet
+          this.frameY * this.spriteHeight, // Y position on sprite sheet
+          this.spriteWidth, // Width of a single frame
+          this.spriteHeight, // Height of a single frame
+          this.x - this.radius , // Adjust for drawing centered on x
+          this.y - this.radius  , // Adjust for drawing centered on y
+          this.spriteWidth, // Scaled width on canvas
+          this.spriteHeight // Scaled height on canvas
+        );
+      }
+
+      update() {
+        this.x -= this.speed;
+        if(this.x < 0 - this.radius * 2) { // Reset position and speed
+          this.x = canvas.width + 200; // Reset position to right side
+          this.y = Math.random() * (canvas.height - 90) + 50;  // Reset position to right side
+          this.speed = Math.random() * 4 + 1;  // Reset speed to a new random value
+        }
+        if(gameFrame % 5 == 0) { 
+          this.frame++;
+          if(this.frame >= 12) this.frame = 0; 
+          if(this.frame == 3 || this.frame == 7 || this.frame == 11) {
+            this.frameX = 0;
+          } else {
+            this.frameX++;
+          }
+          if(this.frame < 3) this.frameY = 0;
+          else if(this.frame < 7) this.frameY = 1;
+          else if(this.frame < 11) this.frameY = 2;
+          else this.frameY = 0;
+        }
+        //collision with player detection
+        const dx = this.x - player.x;
+        const dy = this.y - player.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if(distance < this.radius + player.radius) {
+          handlePointsLost()
+        }
+      }
+    }
+
+    const sharkEnemy = new Enemy();
+
+    const handleEnemiees = () => {
+      sharkEnemy.update();
+      sharkEnemy.draw();
+    }
+
+    const handlePointsLost = () => {
+      ctx.fillStyle = 'black';
+      ctx.fillText('Points Lost', canvas.width / 2, canvas.height / 2);
+      score = Math.max(score - 1, 0);
+    }
 
     // Bubbles class
     const bubbleArray = [];
@@ -282,8 +349,6 @@ const Letters = () => {
     const bubblePop2 = document.createElement('audio');
     bubblePop2.src = '/audio/bubbles/bubbles-single2.wav';
 
-    // const letterSound = new Audio();
-    // letterSound.src = '/audio/lettersound.mp3';
 
     // Handle bubbles
     const handleBubbles = () => {
@@ -313,7 +378,6 @@ const Letters = () => {
             const isMatching = playerLetters.some((val) => val.letter === bubbleLetter.letter);
 
             if (isMatching) {
-              console.log("Correct Letter:", bubbleLetter.lettersound);
               // Play sound
               if (bubble.sound === 'sound1') bubblePop1.play();
               else bubblePop2.play();
@@ -339,20 +403,20 @@ const Letters = () => {
               });
 
 
-              setPoppedLetter((prevSet) => new Set(prevSet).add(bubbleLetter.letter));
-              
+              setPoppedLetter((prevSet) => {
+                const updatedSet = new Set(prevSet).add(bubbleLetter.letter);
+                checkIfPlayerWon(updatedSet); // Pass updated state directly if needed
+                return updatedSet;
+              });              
 
 
               checkIfPlayerWon()
 
-              // Increase score and mark the bubble as counted
               score++;
               bubble.counted = true;
               bubbleArray.splice(i, 1);
               i--; // Adjust index after removal
-            } else {
-              console.log("Wrong Letter:");
-            }
+            } 
           }
         }
       }
@@ -385,6 +449,7 @@ const Letters = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       handleBackground();
+      handleEnemiees()
       handleBubbles();
       player.update();
       player.draw();
@@ -416,8 +481,14 @@ const Letters = () => {
     <div>
       {letters.length === 0 ? (
         <div className={letterstyles.loadingPage}>
-          <h1 style={{color:'yellow'}}>Loading...</h1>
+          <h1>Loading...</h1>
           <p>Please wait while we prepare the game.</p>
+          <DNA
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="dna-loading"
+          />  
         </div>
       ) : playerWon ? (
         <div  className={letterstyles.wonContainer}>
@@ -434,17 +505,6 @@ const Letters = () => {
               ctx.closePath()
             }}
           />
-          {/* <div className={letterstyles.playAgainButtonWrapper}>
-              <h1>You Won!</h1>
-              <p>Congratulations!</p>
-              <button onClick={handlePlayAgain}>
-                play again
-              </button>
-              <NavLink to={`/GameRoom/${age}`} >
-                <HomeIcon size={25} />
-              </NavLink>
-          </div> */}
-
           <WinScreen age={age} onPlayAgain={handlePlayAgain} />
         </div>
       ) : (
